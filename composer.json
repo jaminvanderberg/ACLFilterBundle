@@ -8,5 +8,13 @@
             "url": "https://github.com/jaminvanderberg/ACLBundle"
         }
     ],
-    "required": []
+    "required": [],
+    "autoload": {
+        "psr-4": {
+            "jaminv\\ACLFilterBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
 }
