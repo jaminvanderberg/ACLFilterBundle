@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace VIB\ACLFilterBundle\DependencyInjection;
+namespace jaminv\ACLFilterBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -41,9 +41,9 @@ class VIBACLFilterExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         if (isset($config['acl_walker'])) {
-            $container->setParameter('vib.aclfilter.acl_walker', $config['acl_walker']);
+            $container->setParameter('jaminv.aclfilter.acl_walker', $config['acl_walker']);
         } else {
-            $container->setParameter('vib.aclfilter.acl_walker', 'VIB\ACLFilterBundle\Bridge\Doctrine\AclWalker');
+            $container->setParameter('jaminv.aclfilter.acl_walker', 'jaminv\ACLFilterBundle\Bridge\Doctrine\AclWalker');
         }
 
         $loader = new YamlFileLoader(

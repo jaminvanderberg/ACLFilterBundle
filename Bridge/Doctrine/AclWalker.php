@@ -19,7 +19,7 @@
  * limitations under the License.
  */
 
-namespace VIB\ACLFilterBundle\Bridge\Doctrine;
+namespace jaminv\ACLFilterBundle\Bridge\Doctrine;
 
 use Doctrine\ORM\Query\SqlWalker;
 

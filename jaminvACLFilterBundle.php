@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace jaminvanderberg\ACLFilterBundle;
+namespace jaminv\ACLFilterBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

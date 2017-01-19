@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace VIB\ACLFilterBundle\DependencyInjection;
+namespace jaminv\ACLFilterBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
