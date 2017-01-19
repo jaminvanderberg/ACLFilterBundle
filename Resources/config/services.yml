@@ -1,0 +1,14 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+#    parameter_name: value
+    jaminv.aclfilter.class: "jaminv\AclFilterBundle\Bridge\Doctrine\AclFilter"
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    jaminv.aclfilter:
+        class: "%jaminv.security.filter.acl.class%"
+        arguments: ['@doctrine', '@security.context', '%jaminv.aclfilter.acl_walker%', '%security.role_hierarchy.roles%']

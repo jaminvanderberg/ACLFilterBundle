@@ -1,0 +1,12 @@
+{
+    "name": "jaminv/aclfilter-bundle",
+    "version": "0.8.1",
+    "description": "ACL Filter bridge for Doctrine QueryBuilder",
+	  "repositories": [
+        {
+            "type": "package",
+            "url": "https://github.com/jaminvanderberg/ACLBundle"
+        }
+    ],
+    "required": []
+}
