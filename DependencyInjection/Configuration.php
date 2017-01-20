@@ -38,7 +38,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->scalarNode('acl_walker')->defaultValue('jaminv\SecurityBundle\Bridge\Doctrine\AclWalker')->end()
+            ->scalarNode('acl_walker')->defaultValue('jaminv\ACLFilterBundle\Bridge\Doctrine\AclWalker')->end()
             ->arrayNode('acl_class_mapping')
                 ->prototype('array')
                     ->prototype('scalar')->end()
