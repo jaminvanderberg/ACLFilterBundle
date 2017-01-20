@@ -16,23 +16,23 @@ or edit composer.json:
 
     # /composer.json
     "require": {
-        `...`
+        ...
         "jaminv/aclfilter-bundle": "dev-master"
     },
 
 ### Register Bundle
 
-    // /app/AppKernel.php
+    # /app/AppKernel.php 
     class AppKernel extends Kernel
     {
         public function registerBundles()
         {
             $bundles = [
-                `...`
+                ...
                 new jaminv\ACLFilterBundle\jaminvACLFilterBundle(),
 
                 new AppBundle\AppBundle(),
             ];
-            `...`
+            ...
 
 ### Usage

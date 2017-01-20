@@ -40,6 +40,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
  *
  * Updated 1/19/2017 - jaminvanderberg - Symfony 3 update:
  *   `security.context` replaced with `security.token_storage`
+ *   Added a fix to handle erroneous role hierarchy
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  * @author mailaneel
@@ -266,6 +267,8 @@ SELECTQUERY;
     /**
      * Get parent roles of the specified role
      *
+     * 1/19/2017 - jaminvanderberg - Added a fix to handle circular (wrong) role hierachies without crashing.
+     *
      * @param  string $role
      * @return array
      */
@@ -276,7 +279,9 @@ SELECTQUERY;
         if (array_key_exists($role, $hierarchy)) {
             foreach ($hierarchy[$role] as $parent_role) {
                 $roles[] = '"' . $parent_role . '"';
-                $roles = array_merge($roles,$this->resolveRoles($parent_role));
+                if ($parent_role !== $role) {
+                    $roles = array_merge($roles,$this->resolveRoles($parent_role));
+                }
             }
         }
 
