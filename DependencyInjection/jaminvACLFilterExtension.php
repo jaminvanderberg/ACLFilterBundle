@@ -38,6 +38,12 @@ class jaminvACLFilterExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        if (isset($config['acl_walker'])) {
+            $container->setParameter('jaminv.aclfilter.acl_walker', $config['acl_walker']);
+        } else {
+            $container->setParameter('jaminv.aclfilter.acl_walker', 'jaminv\ACLFilterBundle\Bridge\Doctrine\AclWalker');
+        }
+
         $loader = new YamlFileLoader(
             $container,
             new FileLocator(__DIR__ . '/../Resources/config')

@@ -67,11 +67,12 @@ class AclFilter
      * @param array                                                    $roleHierarchy
      */
     public function __construct(ManagerRegistry $doctrine,
-            TokenStorage $tokenStorage, $roleHierarchy)
+            TokenStorage $tokenStorage, $aclWalker, $roleHierarchy)
     {
         $this->em = $doctrine->getManager();
         $this->tokenStorage = $tokenStorage;
         $this->aclConnection = $doctrine->getConnection('default');
+        $this->aclWalker = $aclWalker;
         $this->roleHierarchy = $roleHierarchy;
     }
 
@@ -121,7 +122,7 @@ class AclFilter
         $hintAclMetadata[] = array('query' => $aclQuery, 'table' => $table, 'alias' => $alias);
 
         $query->setHint('acl.metadata', $hintAclMetadata);
-        $query->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'jaminv\ACLFilterBundle\Bridge\Doctrine\AclWalker');
+        $query->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER,$this->aclWalker);
 
         return $query;
     }

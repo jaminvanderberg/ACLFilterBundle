@@ -11,4 +11,4 @@ services:
 
     jaminv.aclfilter:
         class: "%jaminv.aclfilter.class%"
-        arguments: ['@doctrine', '@security.token_storage', '%security.role_hierarchy.roles%']
+        arguments: ['@doctrine', '@security.token_storage', '%jaminv.aclfilter.acl_walker%', '%security.role_hierarchy.roles%']
