@@ -1,6 +1,7 @@
 {
     "name": "jaminv/aclfilter-bundle",
     "version": "0.0.2",
+    "license": "Apache-2.0",
     "description": "ACL Filter bridge for Doctrine QueryBuilder",
 	  "repositories": [
         {
