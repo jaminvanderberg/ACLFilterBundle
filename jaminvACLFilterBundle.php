@@ -19,12 +19,15 @@
 namespace jaminv\ACLFilterBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use jaminv\ACLFilterBundle\DependencyInjection\jaminvACLFilterExtension;
 
 /**
  * VIBSecurityBundle
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class jaminvACLFilterBundle extends Bundle
-{
+class jaminvACLFilterBundle extends Bundle {
+    public function getContainerExtension() {
+        return new jaminvACLFilterExtension();
+    }
 }
