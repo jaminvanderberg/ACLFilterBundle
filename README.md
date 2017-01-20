@@ -22,10 +22,10 @@ The catch is that this bundle has to query the database directly, so
 there may be compatibility issues or issues with future revisions of Doctrine.
 It should be compatible with most databases, however, and I was able to
 implement code from 4 years ago with very few changes to Symfony code only.
-No code changes were made to the Doctrine-specific code, so this should 
+No code changes were made to the Doctrine-specific code, so this should
 continue to work with Doctrine versions into the near future at least.
 
-* Cloned from rejsmont/LabDB.
+* Cloned from <a href="https://github.com/rejsmont/LabDB">rejsmont/LabDB</a>.
 * Extracted just the src/VIB/SecurityBundle package
 * Removed and changed some files that weren't relevant to the ACL filter system.
 * Renamed to ACLFilterBundle, to reflect singular purpose.
