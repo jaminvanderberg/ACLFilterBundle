@@ -33,6 +33,8 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
+use jaminv\ACLFilterBundle\Bridge\Doctrine\AclWalker;
+
 /**
  * Doctrine filter that applies ACL to fetched of entities
  *
@@ -55,7 +57,7 @@ class AclFilter
      * @DI\InjectParams({
      *     "doctrine" = @DI\Inject("doctrine"),
      *     "tokenStorage" = @DI\Inject("security.token_storage"),
-     *     "aclWalker" = @DI\Inject("%vib.security.acl_walker%"),
+     *     "aclWalker" = @DI\Inject("%jaminv.aclfilter.acl_walker%"),
      *     "roleHierarchy" = @DI\Inject("%security.role_hierarchy.roles%")
      * }
      *
@@ -65,12 +67,11 @@ class AclFilter
      * @param array                                                    $roleHierarchy
      */
     public function __construct(ManagerRegistry $doctrine,
-            TokenStorage $tokenStorage, $aclWalker, $roleHierarchy)
+            TokenStorage $tokenStorage, $roleHierarchy)
     {
         $this->em = $doctrine->getManager();
         $this->tokenStorage = $tokenStorage;
         $this->aclConnection = $doctrine->getConnection('default');
-        $this->aclWalker = $aclWalker;
         $this->roleHierarchy = $roleHierarchy;
     }
 
@@ -120,7 +121,7 @@ class AclFilter
         $hintAclMetadata[] = array('query' => $aclQuery, 'table' => $table, 'alias' => $alias);
 
         $query->setHint('acl.metadata', $hintAclMetadata);
-        $query->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER,$this->aclWalker);
+        $query->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'jaminv\ACLFilterBundle\Bridge\Doctrine\AclWalker');
 
         return $query;
     }
