@@ -31,12 +31,15 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 /**
  * Doctrine filter that applies ACL to fetched of entities
  *
  * @link https://gist.github.com/mailaneel/1363377 Original code on gist
+ *
+ * Updated 1/19/2017 - jaminvanderberg - Symfony 3 update:
+ *   `security.context` replaced with `security.token_storage`
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  * @author mailaneel
@@ -50,21 +53,21 @@ class AclFilter
      *
      * @DI\InjectParams({
      *     "doctrine" = @DI\Inject("doctrine"),
-     *     "securityContext" = @DI\Inject("security.context"),
+     *     "tokenStorage" = @DI\Inject("security.token_storage"),
      *     "aclWalker" = @DI\Inject("%vib.security.acl_walker%"),
      *     "roleHierarchy" = @DI\Inject("%security.role_hierarchy.roles%")
-     * })
+     * }
      *
      * @param Doctrine\Common\Persistence\ManagerRegistry              $doctrine
-     * @param Symfony\Component\Security\Core\SecurityContextInterface $securityContext
+     * @param Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage $tokenStorage
      * @param string                                                   $aclWalker
      * @param array                                                    $roleHierarchy
      */
     public function __construct(ManagerRegistry $doctrine,
-            SecurityContextInterface $securityContext, $aclWalker, $roleHierarchy)
+            TokenStorage $tokenStorage, $aclWalker, $roleHierarchy)
     {
         $this->em = $doctrine->getManager();
-        $this->securityContext = $securityContext;
+        $this->tokenStorage = $tokenStorage;
         $this->aclConnection = $doctrine->getConnection('default');
         $this->aclWalker = $aclWalker;
         $this->roleHierarchy = $roleHierarchy;
@@ -83,7 +86,7 @@ class AclFilter
     public function apply($query, array $permissions = array("VIEW"), $identity = null, $alias = null)
     {
         if (null === $identity) {
-            $token = $this->securityContext->getToken();
+            $token = $this->tokenStorage->getToken();
             $identity = $token->getUser();
         }
 
