@@ -61,7 +61,9 @@ or edit composer.json:
             ];
             ...
 
-### Usage
+## Usage
+
+### Basic Usage
 
 Set up a basic query:
 
