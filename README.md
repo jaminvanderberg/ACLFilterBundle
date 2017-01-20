@@ -73,8 +73,7 @@ Set up a basic query:
 Apply the AclFilter to the query:
 
     $aclfilter = $this->get('jaminv.aclfilter');
-    $query = $builder->getQuery();
-    $query = $aclfilter->apply($query, array('EDIT'), $this->getUser(), 'a');
+    $query = $aclfilter->apply($builder->getQuery(), array('EDIT'), $this->getUser(), 'a');
     $result = $query->getResult();
 
 The AclFilter will modify the query so that it only returns results for objects
