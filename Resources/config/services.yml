@@ -10,5 +10,5 @@ services:
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
     jaminv.aclfilter:
-        class: "%jaminv.security.filter.acl.class%"
+        class: "%jaminv.aclfilter.class%"
         arguments: ['@doctrine', '@security.context', '%jaminv.aclfilter.acl_walker%', '%security.role_hierarchy.roles%']
