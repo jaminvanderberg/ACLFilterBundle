@@ -75,7 +75,7 @@ class AclQuery
 SELECT s.identifier AS security_identifier, s.username AS is_username, e.mask
     FROM acl_entries AS e
         LEFT JOIN acl_classes AS c ON c.id = e.class_id
-        LEFT JOIN acl_object_indentities AS o ON o.id = e.object_identity_id
+        LEFT JOIN acl_object_identities AS o ON o.id = e.object_identity_id
         LEFT JOIN acl_security_identities AS s ON s.id = e.security_identity_id
         WHERE c.class_type = ?
             AND o.object_identifier = ?
