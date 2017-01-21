@@ -70,7 +70,7 @@ class AclQuery
 
         $conn = $this->em->getConnection();
 
-        $fieldquery = ($field === NULL ? 'e.field IS ?' : 'e.field = ?');
+        $fieldquery = ($field === NULL ? 'e.field_name IS ?' : 'e.field_name = ?');
         $query = <<<SELECTQUERY
 SELECT s.identifier AS security_identifier, s.username AS is_username, e.mask
     FROM acl_entries AS e
