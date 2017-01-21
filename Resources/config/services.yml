@@ -3,7 +3,7 @@
 parameters:
 #    parameter_name: value
     jaminv.aclfilter.class: jaminv\ACLFilterBundle\Bridge\Doctrine\AclFilter
-    jaminv.aclfilter.class: jaminv\ACLFilterBundle\Bridge\Doctrine\AclQuery
+    jaminv.aclquery.class: jaminv\ACLFilterBundle\Bridge\Doctrine\AclQuery
 
 services:
 #    service_name:
@@ -15,5 +15,5 @@ services:
         arguments: ['@doctrine', '@security.token_storage', '%jaminv.aclfilter.acl_walker%', '%security.role_hierarchy.roles%']
 
     jaminv.aclquery:
-        class: "%jaminv.aclfilter.class%"
-        arguments: ['@doctrine']        
+        class: "%jaminv.aclquery.class%"
+        arguments: ['@doctrine']
