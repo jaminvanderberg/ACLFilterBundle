@@ -80,6 +80,7 @@ SELECT s.identifier AS security_identifier, s.username AS is_username, e.mask
         WHERE c.class_type = ?
             AND o.object_identifier = ?
             AND $fieldquery
+    ORDER BY s.username DESC, s.identifier
 SELECTQUERY;
 
         $sql = $conn->prepare($query);
