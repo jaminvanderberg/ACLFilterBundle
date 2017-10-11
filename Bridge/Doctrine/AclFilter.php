@@ -119,7 +119,7 @@ class AclFilter
 
         $hintAclMetadata =
             (false !== $query->getHint('acl.metadata')) ? $query->getHint('acl.metadata') : array();
-        $hintAclMetadata[] = array('query' => $aclQuery, 'table' => $table, 'alias' => $alias);
+        $hintAclMetadata[] = array('query' => $aclQuery, 'table' => $table, 'alias' => $alias, 'tableId' => $metadata->getSingleIdentifierColumnName());
 
         $query->setHint('acl.metadata', $hintAclMetadata);
         $query->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER,$this->aclWalker);
@@ -235,7 +235,7 @@ SELECTQUERY;
         $userClass = array();
         if ($identity instanceof UserInterface) {
             $roles = $identity->getRoles();
-            $userClass[] = '"' . str_replace('\\', '\\\\', get_class($identity)) . '-' . $identity->getUserName() . '"';
+            $userClass[] = '"' . str_replace('\\', '\\\\', \Doctrine\Common\Util\ClassUtils::get_class($identity)) . '-' . $identity->getUserName() . '"';
         } elseif (is_string($identity)) {
             $roles = array($identity);
         } else {
