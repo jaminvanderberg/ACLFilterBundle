@@ -235,7 +235,7 @@ SELECTQUERY;
         $userClass = array();
         if ($identity instanceof UserInterface) {
             $roles = $identity->getRoles();
-            $userClass[] = '"' . str_replace('\\', '\\\\', \Doctrine\Common\Util\ClassUtils::get_class($identity)) . '-' . $identity->getUserName() . '"';
+            $userClass[] = '"' . str_replace('\\', '\\\\', \Doctrine\Common\Util\ClassUtils::getClass($identity)) . '-' . $identity->getUserName() . '"';
         } elseif (is_string($identity)) {
             $roles = array($identity);
         } else {
