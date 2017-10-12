@@ -48,10 +48,11 @@ class AclWalker extends SqlWalker
                 $query = $metadata['query'];
                 $table = $metadata['table'];
                 $tableAlias = $this->getSQLTableAlias($table, $alias);
+                $tableId = $metadata['tableId'];
                 $aclAlias = 'ta' . $key . '_';
 
                 $aclSql = <<<ACL_SQL
-INNER JOIN ({$query}) {$aclAlias} ON {$tableAlias}.id = {$aclAlias}.id
+INNER JOIN ({$query}) {$aclAlias} ON {$tableAlias}.{$tableId} = {$aclAlias}.id
 ACL_SQL;
                 $sql .= ' ' . $aclSql;
             }
