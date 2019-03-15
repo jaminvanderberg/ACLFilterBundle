@@ -71,7 +71,7 @@ class AclFilter
     {
         $this->em = $doctrine->getManager();
         $this->tokenStorage = $tokenStorage;
-        $this->aclConnection = $doctrine->getConnection('default');
+        $this->aclConnection = $doctrine->getConnection();
         $this->aclWalker = $aclWalker;
         $this->roleHierarchy = $roleHierarchy;
     }
